@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">RepTracker</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+<container>
+	<div class="col-md-4">Exercises
+	<div id='allExercises'>
+		<ul id='exList'>
+		
+		</ul>
+	</div>
+	<p>Create Exercise</p>
+	<form onsubmit="return false;">
+  Exercise Name<br>
+  <input type="text" id="exercise_nm" name="exercise_nm">
+  <br>
+  Ex Type:<br>
+  <input type="text" id="ex_type_cd" name="ex_type_cd">
+  <br><br>
+  <button onclick="CreateEx()">Submit</button>
+</form> 
+<script type = "text/javascript">
+	function CreateEx() {
+		console.log('test');
+		ex_nm = document.getElementById("exercise_nm").value;
+		ex_type = document.getElementById("ex_type_cd").value;
+		
+			$.ajax({
+			crossOrigin: true,
+   url: 'http://10.0.0.35:8000/workouts/new_exercise',
+   type: 'POST',
+   data: {
+				csrfmiddlewaretoken: "{{ csrf_token }}",
+				exercise_nm : ex_nm,
+				ex_type_cd: ex_type
+	},
+   dataType: 'json',
+   complete: function(data){
+		json = JSON.parse(data.responseJSON);
+	   var ihtml ="";
+	   for (var i = 0; i< json.length; i++) {
+			name = json[i]['fields']['exercise_nm'];
+			document.getElementById("exList").innerHTML = ihtml;
+			ihtml = ihtml + "<li>";
+			ihtml = ihtml + name;
+			ihtml = ihtml + "</li>";
+			document.getElementById("exList").innerHTML = ihtml;
+	   };
+       
+    }
+  })
+};
+			
+		
+	
+</script>
+
+</div>
+	<div class="col-md-4">TWO</div>
+	<div class="col-md-4">THREE</div>
+</container>
+</body>
