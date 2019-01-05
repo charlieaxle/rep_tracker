@@ -28,4 +28,6 @@ def newExercise(request):
     data = data = serializers.serialize('json', exercises)
     return HttpResponse(json.dumps(data), content_type="application/json")
 
-    
+def testJS(request):
+    template = loader.get_template('workouts/testJS.html')
+    return HttpResponse(template.render({}, request))
