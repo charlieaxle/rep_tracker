@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="{% static "workouts/web/js/session.js" %}"></script>
+
+</head>
+
+<body>
+
+<container>
+ <div class="page-header col-md-4 col-md-offset-4">
+    <h1>Complete a Set</h1>      
+ </div>
+	<div class="col-md-4 col-md-offset-4">
+	<p>Complete a Set</p>
+	<form onsubmit="return false;">
+  Exercise<br>
+<select name="exercise" id="exercise_id">
+{% for e in exercises %}
+<option value={{ e.id }}>{{ e.exercise_nm }}</option>
+{% endfor %}
+</select>
+  <br>
+  Weight<br>
+  <input type="text" id="ex_type_cd" name="ex_type_cd">
+  <br>
+  Reps<br>
+  <input type="text" id="ex_type_cd" name="ex_type_cd">
+  <br><br>
+  <button onclick="AddSet()">Submit</button>
+</form> 
+</div>
+</container>
+</body>
