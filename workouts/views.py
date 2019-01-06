@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from workouts.models import Exercise, Session, Sets, Gym, Individual
+from django.http import HttpResponse, QueryDict
+from workouts.models import Exercise, Session, Set, Gym, Individual
 from django.template import loader
 import datetime
 from workouts.forms import ExerciseForm
@@ -57,11 +57,20 @@ def apiSession(request):
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")
 
+    elif (request.method == 'PUT'):
+        put = QueryDict(request.body)
+        session_id = put.get("session_id")
+        s = Session.objects.get(pk=session_id)
+        s.end_ts = datetime.datetime.now()
+        s.save()
+        data =  serializers.serialize('json', [s,])
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
 @csrf_exempt
 def apiSet(request):
     if (request.method == 'POST'):
         s = Set()
-        s.ex_id = request.POST.get("ex_id","")
+        s.exercise_id = request.POST.get("exercise_id","")
         s.weight = request.POST.get("weight","")
         s.reps = request.POST.get("reps","")
         s.session_id = request.POST.get("session_id","")

@@ -62,7 +62,11 @@ function CreateSession(indiv_id, gym_id) {
 	},
 	dataType: 'json',
 	complete: function(data) {
-	    window.location.href = "/workouts/session"
+            json = JSON.parse(data.responseJSON);
+	    console.log(json[0]);
+	    session_id = json[0]['pk']
+	    url = "/workouts/session?sid="+session_id;
+	    window.location.href = url;
 	}
 
     });

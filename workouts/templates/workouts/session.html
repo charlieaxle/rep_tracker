@@ -25,18 +25,23 @@
 	<form onsubmit="return false;">
   Exercise<br>
 <select name="exercise" id="exercise_id">
+<option value="">--Select--</option>
 {% for e in exercises %}
 <option value={{ e.id }}>{{ e.exercise_nm }}</option>
 {% endfor %}
 </select>
   <br>
   Weight<br>
-  <input type="text" id="ex_type_cd" name="ex_type_cd">
+  <input type="text" id="weight" name="weight">
   <br>
   Reps<br>
-  <input type="text" id="ex_type_cd" name="ex_type_cd">
+  <input type="text" id="reps" name="reps">
   <br><br>
-  <button onclick="AddSet()">Submit</button>
+  <button onclick="AddSet()">Set Completed</button>
+<br>
+<br>
+<button onclick="EndSession()">End Workout</button>
+
 </form> 
 </div>
 </container>
