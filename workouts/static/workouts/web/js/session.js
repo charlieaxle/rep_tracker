@@ -24,6 +24,8 @@ function AddSet() {
 	dataType: 'json',
 	complete: function(data) {
             console.log('set api post complete');
+	    document.getElementById("weight").value = '';
+	    document.getElementById("reps").value = '';
 	}
 
     });
@@ -40,6 +42,8 @@ function EndSession() {
 	dataType: 'json',
 	complete: function(data) {
             console.log('workout completed');
+	    url = '/workouts/session_summary/'+session_id
+	    window.location.href = url;
 	}
 
 

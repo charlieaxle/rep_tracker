@@ -77,3 +77,11 @@ def apiSet(request):
         s.save()
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+@csrf_exempt
+def sessionSummary(request, session_id):
+    session = Session.objects.get(id = session_id)
+    template =  loader.get_template('workouts/session_summary.html')
+    context = {'session': session}
+    return HttpResponse(template.render(context, request))
