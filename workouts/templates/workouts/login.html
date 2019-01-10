@@ -5,16 +5,20 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Latest compiled and minified CSS -->
+	<!-- Latest compiled and minified CSS -->
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- jQuery library -->
+	
+	<link rel="stylesheet" href="{% static "workouts/web/css/login.css" %}">
+<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="{% static "workouts/web/js/homepage.js" %}"></script>
+
+	<script src="{% static "workouts/web/js/login.js" %}"></script>
+
+
     <title>Rep Tracker</title>
   </head>
   <body>
@@ -43,7 +47,9 @@
             </div>
           </li>
         </ul>
-	
+        <form class="form-inline my-2 my-lg-0">
+        <input type="text" class="form-control" id="inputSignIn" placeholder="Enter your User Name">
+          <button id="signInButton" class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="signInUser()">Sign In</button>
         </form>
       </div>
     </nav>
@@ -53,34 +59,21 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <p class="display-5">Welcome {{ individual.user_name }}</p>
+          <h1 class="display-3">Get Started</h1>
+		  <div class="row">
+	<form class="form-inline">
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="inputUserName" class="sr-only">User Name</label>
+    <input type="text" class="form-control" id="userNameInput" placeholder="Enter your User Name">
+  </div>
+  <button type="button" class="btn btn-primary mb-2" id="createButton" onClick="createUser()">Create Account</button>
+</form>
+   
+      </div>
 	  </div>
 	  </div> 
 
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <h2>Start a Workout</h2>
-			<p>Begin a session and add your results</p>
-            <p><a class="btn btn-secondary" onClick="CreateSession()" role="button">Begin &raquo;</a></p>
-          </div>
-          <div class="col-md-4">
-            <h2>Add an Exercise</h2>
-            <p>Need to add a new exercise option?</p>
-            <p><a class="btn btn-secondary" onClick="CreateEx()" role="button">Add Exercise &raquo;</a></p>
-	<div id='allExercises'>
-		<ul id='exList'>
-		
-		</ul>
-	</div>
-          </div>
-          <div class="col-md-4">
-            <h2>Your Results</h2>
-            <p>Explore your history with Rep Tracker and manage your progress</p>
-            <p><a class="btn btn-secondary" href="#" role="button">Review &raquo;</a></p>
-          </div>
-        </div>
 
        
  <hr>

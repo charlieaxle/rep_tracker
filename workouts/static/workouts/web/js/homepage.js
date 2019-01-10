@@ -1,7 +1,10 @@
 $(document).ready(function() {
     updateExList();
-
+    indiv_id = decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("uid").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+    console.log(indiv_id);
 });
+
+
 
 function updateExList() {
 
@@ -51,14 +54,15 @@ function CreateEx() {
     })
 };
 
-function CreateSession(indiv_id, gym_id) {
+function CreateSession() {
+	 indiv_id = decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("uid").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
     $.ajax({
         url: '/workouts/api/session',
 	type: 'POST',
 	data: {
 	    csrfmiddlewaretoken: "{{ csrf_token }}",
 	    individual_id: indiv_id,
-            gym_id: gym_id
+            gym_id: 1
 	},
 	dataType: 'json',
 	complete: function(data) {

@@ -11,4 +11,5 @@ urlpatterns =[
     path('api/set', views.apiSet, name='apiSet'),
     path('api/session',views.apiSession, name='apiSession'),
     path('session_summary/<int:session_id>', views.sessionSummary, name='sessionSummary'),
+    path('api/individual', views.apiIndiv, name='apiIndiv'),
 ]

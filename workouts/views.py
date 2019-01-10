@@ -9,7 +9,8 @@ import json
 from django.core import serializers
 
 def index(request):
-    return HttpResponse("Workout index")
+    template = loader.get_template('workouts/login.html')
+    return HttpResponse(template.render({}, request))
 
 def workoutList(request):
     e = Exercise.objects.order_by('-rec_ins_ts')
@@ -35,10 +36,13 @@ def apiExercise(request):
         data = serializers.serialize('json', exercises)
         return HttpResponse(json.dumps(data), content_type="application/json")
         
-
+@csrf_exempt
 def home(request):
     template = loader.get_template('workouts/home.html')
-    return HttpResponse(template.render({}, request))
+    user_id = request.GET.get('uid', '')
+    i = Individual.objects.get(id = user_id)
+    context = {"individual":i}
+    return HttpResponse(template.render(context, request))
 
 def session(request):
     template = loader.get_template('workouts/session.html')
@@ -77,6 +81,23 @@ def apiSet(request):
         s.save()
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")
+
+@csrf_exempt
+def apiIndiv(request):
+    if (request.method == 'POST'):
+        i = Individual();
+        i.rec_ins_ts = datetime.datetime.now()
+        i.user_name =request.POST.get("user_nm","")
+        i.save()
+        data =  serializers.serialize('json', [i,])
+        return HttpResponse(json.dumps(data), content_type="application/json")
+    elif (request.method == 'GET'):
+        user_nm = request.GET.get("user_nm")
+        individual = Individual.objects.get(user_name = user_nm)
+        data =  serializers.serialize('json', [individual,])
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 
 
 @csrf_exempt

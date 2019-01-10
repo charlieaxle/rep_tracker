@@ -1,0 +1,27 @@
+#signInButton {
+	border-color: #33C1FF;
+	color: #33C1FF;
+	
+	
+	
+}
+
+
+#signInButton:hover {
+    color: #33C1FF;
+    background-color: #337AB7 !important;
+    border-color: #2E6DA4 !important;
+}
+
+.jumbotron {
+	height: 70vh;
+	
+	
+}
+
+#createButton {
+	border-color: #33C1FF;
+	color: #33C1FF;
+	background-color: white !important;
+	
+}
