@@ -1,34 +1,47 @@
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="{% static "workouts/web/js/session.js" %}"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static "workouts/web/css/session_summary.css" %}">
+    <title>Rep Tracker</title>
+  </head>
+  <body>
+	    <main role="main">
 
-</head>
-
-<body>
-
-<container>
- <div class="page-header col-md-4 col-md-offset-4">
-    <h1>Workout Summary</h1>      
- </div>
-<div class="col-md-4 col-md-offset-4">
-<table border="1">
-<tr>
-	<td>Exercise</td>
-	<td>Weight</td>
-	<td>Reps</td>
-</tr>
-{{ session.start_ts }}
-
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+ <container>
+ <div class="col-md-4 col-md-offset-4">
+ <br>
+ <p>Workout Summary</p>
+ <hr>
+ <table class="table">
+  <thead>
+	<tr>
+		<th scope="col">Start</th>
+		<th scope="col">End</th>
+	</tr>
+	</thead>
+  <tbody>
+  <tr>
+      <th scope="col">{{ session.start_ts }}</th>
+      <th scope="col">{{ session.end_ts }}</th>
+    </tr>
+  </tbody>
+  </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Exercise</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Reps</th>
+    </tr>
+  </thead>
+  <tbody>
 {% for set in session.set_set.all %}
 <tr>
 	<td>{{ set.exercise.exercise_nm }}</td>
@@ -36,10 +49,28 @@
 	<td>{{ set.reps }}</td>
 </tr>
 {% endfor %}
-
-
+  </tbody>
 </table>
-<a href="/workouts/home"><button>Home</button></a>
-</div>
-</container>
-</body>
+
+<a href="/workouts/home"> <button type="button" class="btn btn-primary mb-2" id="homeButton">Home</button></a>
+ </div>
+ </container>
+
+       
+ <hr>
+      <!-- /container -->
+
+    </main>
+	
+	    <footer class="container">
+      <p>&copy; C.A. Ventures 2019</p>
+    </footer>
+
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,12 +1,8 @@
-var session_id=0;
-$(document).ready(function() {
-    session_id = decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("sid").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1")); 
-});
 
 function AddSet() {
     exercise = document.getElementById("exercise_id");
     ex_id = exercise.value;
-
+    console.log(ex_id);
     weight = document.getElementById('weight').value;
     reps = document.getElementById('reps').value;
     
@@ -16,8 +12,7 @@ function AddSet() {
 	data: {
 	    csrfmiddlewaretoken: "{{ csrf_token }}",
 	    exercise_id: ex_id,
-            session_id: session_id,
-	    weight: weight,
+     	    weight: weight,
 	    reps: reps
     	    
 	},
@@ -36,13 +31,12 @@ function EndSession() {
 	url: '/workouts/api/session',
 	type: 'PUT',
 	data: {
-	    csrfmiddlewaretoken: "{{ csrf_token }}",
-	    session_id: session_id,
-	},
+	    csrfmiddlewaretoken: "{{ csrf_token }}"
+		},
 	dataType: 'json',
 	complete: function(data) {
             console.log('workout completed');
-	    url = '/workouts/session_summary/'+session_id
+	    url = '/workouts/session_summary'
 	    window.location.href = url;
 	}
 

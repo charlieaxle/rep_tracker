@@ -10,6 +10,7 @@ urlpatterns =[
     path('session', views.session, name='workoutSession'),
     path('api/set', views.apiSet, name='apiSet'),
     path('api/session',views.apiSession, name='apiSession'),
-    path('session_summary/<int:session_id>', views.sessionSummary, name='sessionSummary'),
+    path('session_summary', views.sessionSummary, name='sessionSummary'),
     path('api/individual', views.apiIndiv, name='apiIndiv'),
+    path('api/signOut', views.signOut, name='apiSignOut'),
 ]

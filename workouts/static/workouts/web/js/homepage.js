@@ -68,12 +68,35 @@ function CreateSession() {
 	complete: function(data) {
             json = JSON.parse(data.responseJSON);
 	    console.log(json[0]);
-	    session_id = json[0]['pk']
-	    url = "/workouts/session?sid="+session_id;
+	    session_id = json[0]['pk'];
+	    url = "/workouts/session";
 	    window.location.href = url;
 	}
 
     });
+
+
+}
+
+
+function signOutUser() {
+
+    $.ajax({
+        url: '/workouts/api/signOut',
+	type: 'POST',
+	data: {
+	    csrfmiddlewaretoken: "{{ csrf_token }}",
+	},
+	dataType: 'json',
+	complete: function(data) {
+         
+	    console.log('logged out');
+	    url = "/workouts"
+	    window.location.href = url;
+	  }
+
+    });
+
 
 
 }

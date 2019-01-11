@@ -8,9 +8,18 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.core import serializers
 
+
+@csrf_exempt
 def index(request):
-    template = loader.get_template('workouts/login.html')
-    return HttpResponse(template.render({}, request))
+    if 'current_user_id' in request.session:
+        template = loader.get_template('workouts/home.html')
+        user_id = request.session['current_user_id']
+        i = Individual.objects.get(id = user_id)
+        context = {"individual":i}
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('workouts/login.html')
+        return HttpResponse(template.render({}, request))
 
 def workoutList(request):
     e = Exercise.objects.order_by('-rec_ins_ts')
@@ -39,7 +48,7 @@ def apiExercise(request):
 @csrf_exempt
 def home(request):
     template = loader.get_template('workouts/home.html')
-    user_id = request.GET.get('uid', '')
+    user_id = request.session['current_user_id']
     i = Individual.objects.get(id = user_id)
     context = {"individual":i}
     return HttpResponse(template.render(context, request))
@@ -55,15 +64,17 @@ def apiSession(request):
     if (request.method == 'POST'):
         s = Session()
         s.start_ts = datetime.datetime.now()
-        s.individual_id = request.POST.get("individual_id","")
+        s.individual_id = request.session['current_user_id']
         s.gym_id = request.POST.get("gym_id","")
         s.save()
+        request.session['current_session_id'] = s.id
+        print(request.session['current_session_id'])
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")
 
     elif (request.method == 'PUT'):
         put = QueryDict(request.body)
-        session_id = put.get("session_id")
+        session_id = request.session['current_session_id']
         s = Session.objects.get(pk=session_id)
         s.end_ts = datetime.datetime.now()
         s.save()
@@ -74,10 +85,10 @@ def apiSession(request):
 def apiSet(request):
     if (request.method == 'POST'):
         s = Set()
-        s.exercise_id = request.POST.get("exercise_id","")
         s.weight = request.POST.get("weight","")
         s.reps = request.POST.get("reps","")
-        s.session_id = request.POST.get("session_id","")
+        s.exercise_id = request.POST.get("exercise_id","")
+        s.session_id = request.session['current_session_id']
         s.save()
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")
@@ -89,20 +100,28 @@ def apiIndiv(request):
         i.rec_ins_ts = datetime.datetime.now()
         i.user_name =request.POST.get("user_nm","")
         i.save()
+        request.session['current_user_id'] = i.id
         data =  serializers.serialize('json', [i,])
         return HttpResponse(json.dumps(data), content_type="application/json")
     elif (request.method == 'GET'):
         user_nm = request.GET.get("user_nm")
-        individual = Individual.objects.get(user_name = user_nm)
-        data =  serializers.serialize('json', [individual,])
+        i = Individual.objects.get(user_name = user_nm)
+        request.session['current_user_id'] = i.id
+        data =  serializers.serialize('json', [i,])
         return HttpResponse(json.dumps(data), content_type="application/json")
 
-
+@csrf_exempt
+def signOut(request):
+        request.session.flush()
+        template = loader.get_template('workouts/login.html')
+        return HttpResponse('logged out')
+	
 
 
 @csrf_exempt
-def sessionSummary(request, session_id):
-    session = Session.objects.get(id = session_id)
+def sessionSummary(request):
+    session_id = request.session['current_session_id']
+    session = Session.objects.get(id=session_id)
     template =  loader.get_template('workouts/session_summary.html')
     context = {'session': session}
     return HttpResponse(template.render(context, request))
