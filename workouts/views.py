@@ -119,9 +119,17 @@ def signOut(request):
 
 
 @csrf_exempt
-def sessionSummary(request):
-    session_id = request.session['current_session_id']
+def sessionSummary(request, session_id):
     session = Session.objects.get(id=session_id)
     template =  loader.get_template('workouts/session_summary.html')
     context = {'session': session}
+    return HttpResponse(template.render(context, request))
+
+
+@csrf_exempt
+def historySummary(request):
+    user_id = request.session['current_user_id']
+    current_user = Individual.objects.get(id=user_id)
+    context = {'current_user': current_user}
+    template = loader.get_template('workouts/historySummary.html')
     return HttpResponse(template.render(context, request))

@@ -8,7 +8,7 @@
 
 <!-- Latest compiled and minified CSS -->
 	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="{% static "workouts/web/css/home.css" %}">	
+<link rel="stylesheet" href="{% static "workouts/web/css/historySummary.css" %}">	
 
 <!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,7 +16,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="{% static "workouts/web/js/homepage.js" %}"></script>
+	<script src="{% static "workouts/web/js/historySummary.js" %}"></script>
     <title>Rep Tracker</title>
   </head>
   <body>
@@ -53,45 +53,38 @@
       </div>
     </nav>
 
-	    <main role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <div class="container">
-          <p class="display-5">Welcome {{ individual.user_name }}</p>
-	  </div>
-	  </div> 
 
 
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <h2>Start a Workout</h2>
-			<p>Begin a session and add your results</p>
-            <p><a class="btn btn-secondary" onClick="CreateSession()" role="button">Begin &raquo;</a></p>
-          </div>
-          <div class="col-md-4">
-            <h2>Add an Exercise</h2>
-            <p>Need to add a new exercise option?</p>
-            <p><a class="btn btn-secondary" onClick="CreateEx()" role="button">Add Exercise &raquo;</a></p>
-	<div id='allExercises'>
-		<ul id='exList'>
-		
-		</ul>
-	</div>
-          </div>
-          <div class="col-md-4">
-            <h2>Your Results</h2>
-            <p>Explore your history with Rep Tracker and manage your progress</p>
-            <p><a class="btn btn-secondary" href="/workouts/history" role="button">Review &raquo;</a></p>
-          </div>
-        </div>
-
-       
+ <container>
+ <div class="col-md-4 col-md-offset-4">
+ <br>
+<p class="display-5">Workout history for {{ current_user.user_name }}</p>
  <hr>
-      <!-- /container -->
+ <table class="table" id="summaryTable">
+  <thead>
+	<tr>
+		<th scope="col">Start</th>
+		<th scope="col">End</th>
+			<th scope="col"></th>
+	</tr>
+	</thead>
+{% for session in current_user.session_set.all %}
+<tr>
+	<td>{{ session.start_ts }}</td>
+	<td>{{ session.end_ts }}</td>
+	<td><a href="/workouts/session_summary/{{ session.id }}">Details</a></td>
+</tr>
+{% endfor %}
+  </table>
+  <br>
 
-    </main>
+<a href="/workouts/home"> <button type="button" class="btn btn-primary mb-2" id="homeButton">Home</button></a>
+ </div>
+ </container>
+	
+
+
+ 
 	
 	    <footer class="container">
       <p>&copy; C.A. Ventures 2019</p>

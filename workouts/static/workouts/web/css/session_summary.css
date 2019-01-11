@@ -10,3 +10,10 @@
 	background-color: white !important;
 }
 
+
+#summaryTable {
+	
+		border: 1px solid #33C1FF;
+}
+
+#summaryTable tr:nth-child(even){background-color: #f2f2f2;}

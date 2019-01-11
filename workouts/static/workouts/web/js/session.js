@@ -35,8 +35,11 @@ function EndSession() {
 		},
 	dataType: 'json',
 	complete: function(data) {
-            console.log('workout completed');
-	    url = '/workouts/session_summary'
+        console.log('workout completed');
+        json = JSON.parse(data.responseJSON);
+	    console.log(json[0]);
+	    session_id = json[0]['pk']
+	    url = '/workouts/session_summary/'+session_id;
 	    window.location.href = url;
 	}
 
