@@ -13,8 +13,14 @@ function addExercise() {
      	    ex_type_id: ex_type_id
 	},
 	dataType: 'json',
-	complete: function(data) {
-            console.log('exercise api post complete');
+	error: function(xhr, status, error) {
+		element = document.getElementById("validationMessage");
+		element.innerHTML = "<p>"+xhr.responseText+"</p>";
+},
+	complete: function(data, statusText, xhr) {
+		console.log("STATUSTEXT: "+statusText);
+	;	
+        console.log('exercise api post complete');
 	    document.getElementById("exerciseName").value = '';
 	    document.getElementById("exercise_type_id").value = '0';
 	}

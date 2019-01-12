@@ -31,8 +31,8 @@ def workoutList(request):
 def apiExercise(request):
     if (request.method == 'POST'):
         exercise_nm = request.POST.get("exercise_nm", "")
-        if not isValid(exercise_nm):
-            return HttpResponseBadRequest('Invalid exercise name') 
+        if not isValid(exercise_nm, string.ascii_lowercase + string.ascii_uppercase +" "):
+            return HttpResponseBadRequest('Name can only contain letters.') 
         e = Exercise()
         e.exercise_nm = exercise_nm
         e.ex_type_id = request.POST.get("ex_type_id","")
@@ -98,15 +98,14 @@ def apiSet(request):
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-def isValid(input):
-    accepted_chars = string.digits + string.ascii_lowercase + string.ascii_uppercase + "_"
+def isValid(input, accepted_chars):
     return all([char in accepted_chars for char in input]) and len(input)>0
 
 @csrf_exempt
 def apiIndiv(request):
     if (request.method == 'POST'):
         user_name =request.POST.get("user_nm","")
-        if not isValid(user_name):
+        if not isValid(user_name, string.digits + string.ascii_lowercase + string.ascii_uppercase + "_"):
             return HttpResponseBadRequest("Invalid Input")
         i = Individual();
         i.user_name = user_name
