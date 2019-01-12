@@ -55,13 +55,15 @@ function CreateEx() {
 };
 
 function CreateSession() {
-	 indiv_id = decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("uid").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+    	link = document.getElementById("startSessionButton");
+	    link.onclick = function() {return false;}
+    
+
     $.ajax({
         url: '/workouts/api/session',
 	type: 'POST',
 	data: {
 	    csrfmiddlewaretoken: "{{ csrf_token }}",
-	    individual_id: indiv_id,
             gym_id: 1
 	},
 	dataType: 'json',

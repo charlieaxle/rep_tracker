@@ -1,5 +1,8 @@
 
 function AddSet() {
+	button = document.getElementById("addSetButton");
+	button.disabled= true;
+	
     exercise = document.getElementById("exercise_id");
     ex_id = exercise.value;
     console.log(ex_id);
@@ -21,6 +24,8 @@ function AddSet() {
             console.log('set api post complete');
 	    document.getElementById("weight").value = '';
 	    document.getElementById("reps").value = '';
+	    
+	    button.disabled = false;
 	}
 
     });
