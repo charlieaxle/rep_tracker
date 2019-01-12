@@ -1,9 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, QueryDict
-from workouts.models import Exercise, Session, Set, Gym, Individual
+from workouts.models import Exercise, Session, Set, Gym, Individual, ExerciseType
 from django.template import loader
 import datetime
-from workouts.forms import ExerciseForm
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.core import serializers
@@ -32,8 +31,9 @@ def apiExercise(request):
     if (request.method == 'POST'): 
         e = Exercise()
         e.exercise_nm = request.POST.get("exercise_nm", "")
-        e.ex_type_cd = request.POST.get("ex_type_cd","")
+        e.ex_type_id = request.POST.get("ex_type_id","")
         e.rec_ins_ts = datetime.datetime.now()
+        e.indiv_create_id = request.session['current_user_id']
         e.save()
         exercises = Exercise.objects.order_by('-rec_ins_ts')
         data = serializers.serialize('json', exercises)
@@ -133,3 +133,11 @@ def historySummary(request):
     context = {'current_user': current_user}
     template = loader.get_template('workouts/historySummary.html')
     return HttpResponse(template.render(context, request))
+
+@csrf_exempt
+def addExercise(request):
+    exercise_types = ExerciseType.objects.all();
+    context = {'exercise_types':exercise_types}
+    template = loader.get_template('workouts/addExercise.html')
+    return HttpResponse(template.render(context, request))
+ 

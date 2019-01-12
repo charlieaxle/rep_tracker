@@ -3,3 +3,14 @@
 	color: #33C1FF;
 
 }
+
+#signOutButton:hover {
+    color: #33C1FF;
+    background-color: #337AB7 !important;
+    border-color: #2E6DA4 !important;
+}
+
+
+.btn {
+	color: white !important;
+}

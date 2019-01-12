@@ -13,10 +13,15 @@ class Gym(models.Model):
     gym_nm = models.CharField(max_length=200)
     rec_ins_ts = models.DateTimeField()
 
+class ExerciseType(models.Model):
+    ex_type_cd = models.CharField(max_length=2)
+    ex_type_desc = models.CharField(max_length=200)  
+
 class Exercise(models.Model):
     exercise_nm = models.CharField(max_length=200)
-    ex_type_cd = models.CharField(max_length=3)
+    ex_type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
     rec_ins_ts = models.DateTimeField()
+    indiv_create = models.ForeignKey(Individual, on_delete=models.CASCADE)
 
 class Session(models.Model):
     individual = models.ForeignKey(Individual, on_delete=models.CASCADE)
