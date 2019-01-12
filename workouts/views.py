@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse, QueryDict
+from django.http import HttpResponse, QueryDict, HttpResponseBadRequest
 from workouts.models import Exercise, Session, Set, Gym, Individual, ExerciseType
 from django.template import loader
 import datetime
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.core import serializers
+import string
 
 
 @csrf_exempt
@@ -28,9 +29,12 @@ def workoutList(request):
 
 @csrf_exempt
 def apiExercise(request):
-    if (request.method == 'POST'): 
+    if (request.method == 'POST'):
+        exercise_nm = request.POST.get("exercise_nm", "")
+        if not isValid(exercise_nm):
+            return HttpResponseBadRequest('Invalid exercise name') 
         e = Exercise()
-        e.exercise_nm = request.POST.get("exercise_nm", "")
+        e.exercise_nm = exercise_nm
         e.ex_type_id = request.POST.get("ex_type_id","")
         e.rec_ins_ts = datetime.datetime.now()
         e.indiv_create_id = request.session['current_user_id']
@@ -93,12 +97,20 @@ def apiSet(request):
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")
 
+
+def isValid(input):
+    accepted_chars = string.digits + string.ascii_lowercase + string.ascii_uppercase + "_"
+    return all([char in accepted_chars for char in input]) and len(input)>0
+
 @csrf_exempt
 def apiIndiv(request):
     if (request.method == 'POST'):
+        user_name =request.POST.get("user_nm","")
+        if not isValid(user_name):
+            return HttpResponseBadRequest("Invalid Input")
         i = Individual();
+        i.user_name = user_name
         i.rec_ins_ts = datetime.datetime.now()
-        i.user_name =request.POST.get("user_nm","")
         i.save()
         request.session['current_user_id'] = i.id
         data =  serializers.serialize('json', [i,])
