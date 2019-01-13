@@ -24,3 +24,21 @@
 	color: #33C1FF;
 
 }
+
+#signOutButton  {
+	border-color: #33C1FF;
+	color: #33C1FF;
+
+}
+
+#signOutButton:hover {
+    color: #33C1FF;
+    background-color: #337AB7 !important;
+    border-color: #2E6DA4 !important;
+}
+
+#signOutButton:focus {
+    color: #33C1FF;
+    border-color: #2E6DA4 !important;
+    box-shadow: none;
+}

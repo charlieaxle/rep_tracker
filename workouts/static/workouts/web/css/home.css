@@ -10,6 +10,11 @@
     border-color: #2E6DA4 !important;
 }
 
+#signOutButton:focus {
+    color: #33C1FF;
+    border-color: #2E6DA4 !important;
+    box-shadow: none;
+}
 
 .btn {
 	color: white !important;
