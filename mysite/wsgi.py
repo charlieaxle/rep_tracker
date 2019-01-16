@@ -8,6 +8,8 @@ https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/
 """
 
 import os
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
 
 from django.core.wsgi import get_wsgi_application
 
