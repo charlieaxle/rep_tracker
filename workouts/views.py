@@ -21,7 +21,7 @@ def index(request):
         template = loader.get_template('workouts/login.html')
         return HttpResponse(template.render({}, request))
 
-def workoutList(request):
+def exerciseList(request):
     e = Exercise.objects.order_by('-rec_ins_ts')
     template = loader.get_template('workouts/exercises.html')
     context  = {'exercise_list': e}
@@ -49,13 +49,6 @@ def apiExercise(request):
         data = serializers.serialize('json', exercises)
         return HttpResponse(json.dumps(data), content_type="application/json")
         
-@csrf_exempt
-def home(request):
-    template = loader.get_template('workouts/home.html')
-    user_id = request.session['current_user_id']
-    i = Individual.objects.get(id = user_id)
-    context = {"individual":i}
-    return HttpResponse(template.render(context, request))
 
 def session(request):
     template = loader.get_template('workouts/session.html')

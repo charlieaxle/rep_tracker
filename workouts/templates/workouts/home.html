@@ -36,9 +36,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Start Workouot</a>
-              <a class="dropdown-item" href="#">Add Exercise</a>
-              <a class="dropdown-item" href="#">View History</a>
+              <a class="dropdown-item"  onClick="CreateSession()" role="button">Start Workout</a>
+              <a class="dropdown-item" href="/workouts/add_exercise">Add Exercise</a>
+              <a class="dropdown-item" href="/workouts/history">View History</a>
             </div>
           </li>
         </ul>
@@ -65,10 +65,11 @@
           <div class="col-md-4">
             <h2>Start a Workout</h2>
 			<p>Begin a session and add your results</p>
-            <p><a class="btn btn-secondary" onclick="CreateSession()" role="button" id="startSessionButton">Begin &raquo;</a></p>
+            <p><a class="btn btn-secondary" onclick="CreateSession()" href="#" role="button" id="startSessionButton">Begin &raquo;</a></p>
           </div>
           <div class="col-md-4">
-            <h2>Add an Exercise</h2>
+            <h2>Exercises</h2>
+	    <p><a class="btn btn-secondary" href="/workouts/userExercises" role="button">View Exercises &raquo;</a></p>
             <p>Need to add a new exercise option?</p>
             <p><a class="btn btn-secondary" href="/workouts/add_exercise" role="button">Add Exercise &raquo;</a></p>
 	<div id='allExercises'>

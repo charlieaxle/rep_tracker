@@ -1,36 +1,9 @@
 $(document).ready(function() {
-    updateExList();
     indiv_id = decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("uid").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
     console.log(indiv_id);
 });
 
 
-
-function updateExList() {
-
-    $.ajax({
-        crossOrigin: true,
-        url: '/workouts/exercise',
-        type: 'GET',
-        data: {
-            csrfmiddlewaretoken: "{{ csrf_token }}",
-        },
-        dataType: 'json',
-        complete: function(data) {
-            json = JSON.parse(data.responseJSON);
-            var ihtml = "";
-            for (var i = 0; i < json.length; i++) {
-                name = json[i]['fields']['exercise_nm'];
-                document.getElementById("exList").innerHTML = ihtml;
-                ihtml = ihtml + "<li>";
-                ihtml = ihtml + name;
-                ihtml = ihtml + "</li>";
-                document.getElementById("exList").innerHTML = ihtml;
-            };
-        }
-    })
-
-}
 
 function CreateEx() {
     ex_nm = document.getElementById("exercise_nm").value;
