@@ -21,6 +21,9 @@
 
 .jumbotron {
 	height: 70vh;
+	background-repeat: no-repeat;
+ 	 background-size:cover;
+
 	
 	
 }
@@ -30,4 +33,10 @@
 	color: #33C1FF;
 	background-color: white !important;
 	
+}
+
+h1 {
+
+color: white;
+
 }
