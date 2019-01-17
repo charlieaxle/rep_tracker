@@ -98,8 +98,12 @@ def isValid(input, accepted_chars):
 def apiIndiv(request):
     if (request.method == 'POST'):
         user_name =request.POST.get("user_nm","")
+
+        if Individual.objects.filter(user_name = user_name).exists():
+            return HttpResponseBadRequest("User Name Already Exits")
+
         if not isValid(user_name, string.digits + string.ascii_lowercase + string.ascii_uppercase + "_"):
-            return HttpResponseBadRequest("Invalid Input")
+            return HttpResponseBadRequest("Only Characters and Numbers allowed (No Spaces)")
         i = Individual();
         i.user_name = user_name
         i.rec_ins_ts = datetime.datetime.now()

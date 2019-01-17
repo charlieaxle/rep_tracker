@@ -31,6 +31,12 @@ function createUser() {
 		},
 
 		dataType : 'json',
+
+		error: function(xhr, status, error) {
+		element = document.getElementById("validationMessage");
+		element.innerHTML = "<p>"+xhr.responseText+"</p>";
+		},
+
 		complete: function(data) {
 			console.log('User Created');
             		json = JSON.parse(data.responseJSON);

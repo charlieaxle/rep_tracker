@@ -16,7 +16,7 @@ function addExercise() {
 	error: function(xhr, status, error) {
 		element = document.getElementById("validationMessage");
 		element.innerHTML = "<p>"+xhr.responseText+"</p>";
-},
+	},
 	complete: function(data, statusText, xhr) {
 		console.log("STATUSTEXT: "+statusText);
 	;	
