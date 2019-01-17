@@ -1,3 +1,21 @@
+$(document).ready( function() {
+
+
+ 	var x= document.getElementById("userNameInput");
+	var footer = document.getElementById("footer");
+
+x.onfocus=function() {
+      footer.innerHTML="";
+    };
+
+x.onblur=function() {
+      footer.innerHTML="<p>&copy; C.A. Ventures 2019</p>";
+    };
+
+
+
+});
+
 function createUser() {
 	console.log("test");
 	user_name = document.getElementById("userNameInput").value;
