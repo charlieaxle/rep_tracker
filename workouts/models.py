@@ -22,6 +22,7 @@ class Exercise(models.Model):
     ex_type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
     rec_ins_ts = models.DateTimeField()
     indiv_create = models.ForeignKey(Individual, on_delete=models.CASCADE)
+    active_ind = models.CharField(max_length = 1)
 
 class Session(models.Model):
     individual = models.ForeignKey(Individual, on_delete=models.CASCADE)

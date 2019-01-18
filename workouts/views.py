@@ -23,7 +23,7 @@ def index(request):
 
 def exerciseList(request):
     user_id = request.session['current_user_id']
-    e = Exercise.objects.filter(indiv_create_id=user_id).	order_by('-rec_ins_ts')
+    e = Exercise.objects.filter(indiv_create_id=user_id, active_ind='Y').order_by('-rec_ins_ts')
     template = loader.get_template('workouts/exercises.html')
     context  = {'exercise_list': e}
     return HttpResponse(template.render(context, request))
@@ -39,6 +39,7 @@ def apiExercise(request):
         e.ex_type_id = request.POST.get("ex_type_id","")
         e.rec_ins_ts = datetime.datetime.now()
         e.indiv_create_id = request.session['current_user_id']
+        e.active_ind='Y'
         
         e.save()
         exercises = Exercise.objects.order_by('-rec_ins_ts')
