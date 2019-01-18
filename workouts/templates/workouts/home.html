@@ -53,7 +53,7 @@
 	    <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="jumbotron">
+      <div class="jumbotron" style="background-image: url({% static 'workouts/web/img/banner.jpeg' %});">
         <div class="container">
           <p class="display-5">Welcome {{ individual.user_name }}</p>
 	  </div>
@@ -65,13 +65,13 @@
           <div class="col-md-4">
             <h2>Start a Workout</h2>
 			<p>Begin a session and add your results</p>
-            <p><a class="btn btn-secondary" onclick="CreateSession()" href="#" role="button" id="startSessionButton">Begin &raquo;</a></p>
+            <p><button class="btn btn-secondary mainButton" onclick="CreateSession()" href="#" role="button" id="startSessionButton">Begin &raquo;</button></p>
           </div>
           <div class="col-md-4">
             <h2>Exercises</h2>
-	    <p><a class="btn btn-secondary" href="/workouts/userExercises" role="button">View Exercises &raquo;</a></p>
+	    <p><a href="/workouts/userExercises"><button class="btn btn-secondary mainButton" role="button">View Exercises &raquo;</button><a></p>
             <p>Need to add a new exercise option?</p>
-            <p><a class="btn btn-secondary" href="/workouts/add_exercise" role="button">Add Exercise &raquo;</a></p>
+            <p><a  href="/workouts/add_exercise"><button class="btn btn-secondary mainButton" role="button">Add Exercise &raquo;</button><a></p>
 	<div id='allExercises'>
 		<ul id='exList'>
 		
@@ -81,7 +81,7 @@
           <div class="col-md-4">
             <h2>Your Results</h2>
             <p>Explore your history with Rep Tracker and manage your progress</p>
-            <p><a class="btn btn-secondary" href="/workouts/history" role="button">Review &raquo;</a></p>
+            <p><a href="/workouts/history"><button class="btn btn-secondary mainButton" href="/workouts/history" role="button">Review &raquo;</button></a></p>
           </div>
         </div>
 

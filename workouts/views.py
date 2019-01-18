@@ -22,7 +22,8 @@ def index(request):
         return HttpResponse(template.render({}, request))
 
 def exerciseList(request):
-    e = Exercise.objects.order_by('-rec_ins_ts')
+    user_id = request.session['current_user_id']
+    e = Exercise.objects.filter(indiv_create_id=user_id).	order_by('-rec_ins_ts')
     template = loader.get_template('workouts/exercises.html')
     context  = {'exercise_list': e}
     return HttpResponse(template.render(context, request))
@@ -38,6 +39,7 @@ def apiExercise(request):
         e.ex_type_id = request.POST.get("ex_type_id","")
         e.rec_ins_ts = datetime.datetime.now()
         e.indiv_create_id = request.session['current_user_id']
+        
         e.save()
         exercises = Exercise.objects.order_by('-rec_ins_ts')
         data = serializers.serialize('json', exercises)
@@ -81,11 +83,15 @@ def apiSession(request):
 @csrf_exempt
 def apiSet(request):
     if (request.method == 'POST'):
+        session_id = request.session['current_session_id']
+        session = Session.objects.get(id=session_id)
+        session.end_ts = datetime.datetime.now()
+
         s = Set()
         s.weight = request.POST.get("weight","")
         s.reps = request.POST.get("reps","")
         s.exercise_id = request.POST.get("exercise_id","")
-        s.session_id = request.session['current_session_id']
+        s.session_id = session_id
         s.save()
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")

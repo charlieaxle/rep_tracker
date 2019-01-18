@@ -19,3 +19,11 @@
 .btn {
 	color: white !important;
 }
+
+
+.mainButton {
+	border-color: #33C1FF !important;
+	color: #33C1FF !important;
+	background-color: white !important;
+
+}
