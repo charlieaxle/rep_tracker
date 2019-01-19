@@ -45,7 +45,16 @@ def apiExercise(request):
         exercises = Exercise.objects.order_by('-rec_ins_ts')
         data = serializers.serialize('json', exercises)
         return HttpResponse(json.dumps(data), content_type="application/json")
-        
+
+    elif (request.method == 'PUT'):
+        put = QueryDict(request.body)
+        ex_id = put.get("ex_id")
+        ex_nm = put.get("ex_nm")
+        e = Exercise.objects.get(id=ex_id)
+        e.exercise_nm = ex_nm
+        e.save()
+        data = serializers.serialize('json', [e,])
+        return HttpResponse(json.dumps(data), content_type="application/json")
 
     else: 
         exercises = Exercise.objects.order_by('-rec_ins_ts')
