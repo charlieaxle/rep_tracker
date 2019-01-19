@@ -57,14 +57,16 @@ def apiExercise(request):
         return HttpResponse(json.dumps(data), content_type="application/json")
 
     else: 
-        exercises = Exercise.objects.order_by('-rec_ins_ts')
+        user_id=request.session['current_user_id']
+        exercises = Exercise.objects.filter(indiv_create_id=user_id, active_ind='Y').order_by('-rec_ins_ts')
         data = serializers.serialize('json', exercises)
         return HttpResponse(json.dumps(data), content_type="application/json")
         
 
 def session(request):
     template = loader.get_template('workouts/session.html')
-    exercises = Exercise.objects.order_by('-rec_ins_ts')
+    user_id=request.session['current_user_id']
+    exercises = Exercise.objects.filter(indiv_create_id=user_id, active_ind='Y').order_by('-rec_ins_ts')
     context = {'exercises':exercises}
     return HttpResponse(template.render(context, request))
 
