@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, QueryDict, HttpResponseBadRequest
-from workouts.models import Exercise, Session, Set, Gym, Individual, ExerciseType
+from workouts.models import Exercise, Session, Set, Gym, Individual, ExerciseType, SummaryIndividual
 from django.template import loader
 import datetime
 from django.views.decorators.csrf import csrf_exempt
@@ -165,5 +165,26 @@ def addExercise(request):
     exercise_types = ExerciseType.objects.all();
     context = {'exercise_types':exercise_types}
     template = loader.get_template('workouts/addExercise.html')
+    return HttpResponse(template.render(context, request))
+
+
+@csrf_exempt
+def profilePage(request):
+    user_id = request.session['current_user_id']
+    i = Individual.objects.get(id=user_id)
+
+    indiv_sessions = Session.objects.filter(individual_id=user_id)    
+    numSessions = indiv_sessions.count()
+
+    times = [s.end_ts - s.start_ts for s in indiv_sessions]
+    timeTotal= datetime.timedelta()
+    for t in times:
+        timeTotal += t
+
+    (d,m,s) = timeTotal.days, timeTotal.seconds//3600, (timeTotal.seconds//60)%60
+
+    context = {'indiv': i, 'numSessions':numSessions, 'timeTotal':[d,m,s] }
+    
+    template = loader.get_template('workouts/profilePage.html')
     return HttpResponse(template.render(context, request))
  

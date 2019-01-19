@@ -16,4 +16,5 @@ urlpatterns =[
     path('history', views.historySummary, name='historySummary'),
     path('add_exercise', views.addExercise, name='addExercisePage'),
     path('api/exercise', views.apiExercise, name='apiExercise'),
+    path('profile', views.profilePage, name='profilePage'),
 ]

@@ -7,56 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="{% static "workouts/web/css/session_summary.css" %}">
+	<link rel="stylesheet" href="{% static "workouts/web/css/profilePage.css" %}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="{% static "workouts/web/js/exercises.js" %}"></script>
 
     <title>Rep Tracker</title>
   </head>
   <body>
-	    <main role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
- <container>
- <div class="col-md-4 col-md-offset-4">
- <br>
- <p>View Available Exercises</p>
- <hr>
-  <br>
-<table class="table" id="summaryTable">
-  <thead>
-    <tr>
-      <th scope="col">Exercise</th>
-      <th scope="col">Type</th>
-    </tr>
-  </thead>
-  <tbody>
-
-
-{% for e in exercise_list %}
-
-<tr id= {{ e.id }}>
-	<td class="exName">{{ e.exercise_nm }}</td>
-	<td>{{ e.ex_type.ex_type_desc }}</td>
-	<td><button class="editButton">Edit</button></td>
-</tr>
-{% endfor %}
-  </tbody>
-</table>
-
+ <main class="jumbotron">
+ 
+<h1>	{{ indiv.user_name }}</h1>
+<br>
+<div class="row">
+<div class="col-md-6">
+<p>Number of Workouts Completed: {{ numSessions }}</p>
+</div>
+<div class="col-md-6">
+<p>Total Time Working Out:<br>	{{ timeTotal.0 }} Days, {{ timeTotal.1 }} Hours, {{ timeTotal.2 }} Minutes </p>
+</div>
+</div>
 <a href="/workouts/home"> <button type="button" class="btn btn-primary mb-2" id="homeButton">Home</button></a>
- </div>
- </container>
 
-       
+</main>
+
  <hr>
-      <!-- /container -->
-
-    </main>
 	
 	    <footer class="container">
       <p>&copy; CAX Ventures 2019</p>
