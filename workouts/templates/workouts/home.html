@@ -20,40 +20,7 @@
     <title>Rep Tracker</title>
   </head>
   <body>
-   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-
-
-      <a class="navbar-brand" href="#">
-<img id="logo" src="{% static 'workouts/web/img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-Rep Tracker</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/workouts/home">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/workouts/profile">Profile</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item"  onClick="CreateSession()" role="button">Start Workout</a>
-              <a class="dropdown-item" href="/workouts/add_exercise">Add Exercise</a>
-              <a class="dropdown-item" href="/workouts/history">View History</a>
-            </div>
-          </li>
-        </ul>
-	
-    <form class="form-inline my-2 my-lg-0">
-            <button id="signOutButton" class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="signOutUser()">Sign Out</button>
-        </form>
-
-      </div>
-    </nav>
-
+{% include "workouts/navbar.html" %}
 	    <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -67,10 +34,22 @@ Rep Tracker</a>
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h2>Start a Workout</h2>
-			<p>Begin a session and add your results</p>
-            <p><button class="btn btn-secondary mainButton" onclick="CreateSession()" href="#" role="button" id="startSessionButton">Begin &raquo;</button></p>
+		
+            {% if individual.has_open_session %}
+		<h2>Resume Workout</h2>
+			<p>Open current workout to continue or end.</p>
+            <p><a href="/workouts/session"><button class="btn btn-secondary mainButton" role="button" id="resumeSessionButton">Resume &raquo;</button></a></p>
           </div>
+        
+		{% else %}
+		
+            <h2>Start a Workout</h2>
+			<p>Begin a Workout</p>
+            <p><button class="btn btn-secondary mainButton" onclick="CreateSession()" href="" role="button" id="startSessionButton">Begin &raquo;</button></p>
+          </div>
+
+	{% endif %}		
+
           <div class="col-md-4">
             <h2>Exercises</h2>
 	    <p><a href="/workouts/userExercises"><button class="btn btn-secondary mainButton" role="button">View Exercises &raquo;</button><a></p>
@@ -95,9 +74,7 @@ Rep Tracker</a>
 
     </main>
 	
-	    <footer class="container">
-      <p>&copy; CAX Ventures 2019</p>
-    </footer>
+{% include "workouts/footer.html" %}
 
 	
     <!-- Optional JavaScript -->

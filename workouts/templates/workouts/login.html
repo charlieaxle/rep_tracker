@@ -22,27 +22,7 @@
     <title>Rep Tracker</title>
   </head>
   <body>
-   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">
-<img id="logo" src="{% static 'workouts/web/img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-Rep Tracker</a>
-   
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/workouts/home">Home<span class="sr-only">(current)</span></a>
-          </li>              
-                  </ul>
-        <form class="form-inline my-2 my-lg-0">
-        <input type="text" class="form-control" id="inputSignIn" placeholder="Enter User Name">
-          <button id="signInButton" class="btn btn-outline-success my-2 my-sm-0" type="button" onClick="signInUser()">Sign In</button>
-        </form>
-      </div>
-    </nav>
-
+{% include "workouts/navbar.html" %}
 	    <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -74,10 +54,7 @@ Rep Tracker</a>
 
     </main>
 	
-	    <footer class="container" id="footer">
-      <p>&copy; CAX Ventures 2019</p>
-    </footer>
-
+{% include "workouts/footer.html" %}
 	
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

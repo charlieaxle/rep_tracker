@@ -8,9 +8,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static "workouts/web/css/session_summary.css" %}">
+	<script src="{% static "workouts/web/js/session_summary.js" %}"></script>
+
     <title>Rep Tracker</title>
   </head>
   <body>
+
+{% include "workouts/navbar.html" %}
 	    <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -63,10 +67,7 @@
 
     </main>
 	
-	    <footer class="container">
-      <p>&copy; CAX Ventures 2019</p>
-    </footer>
-
+{% include "workouts/footer.html" %}
 	
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

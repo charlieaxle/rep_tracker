@@ -75,8 +75,10 @@ def apiSession(request):
     if (request.method == 'POST'):
         s = Session()
         s.start_ts = datetime.datetime.now()
+        s.end_ts = datetime.datetime.now()
         s.individual_id = request.session['current_user_id']
         s.gym_id = request.POST.get("gym_id","")
+        s.is_open = 'Y'
         s.save()
         request.session['current_session_id'] = s.id
         print(request.session['current_session_id'])
@@ -88,6 +90,7 @@ def apiSession(request):
         session_id = request.session['current_session_id']
         s = Session.objects.get(pk=session_id)
         s.end_ts = datetime.datetime.now()
+        s.is_open = 'N'
         s.save()
         data =  serializers.serialize('json', [s,])
         return HttpResponse(json.dumps(data), content_type="application/json")
