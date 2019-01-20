@@ -87,7 +87,10 @@ def apiSession(request):
 
     elif (request.method == 'PUT'):
         put = QueryDict(request.body)
-        session_id = request.session['current_session_id']
+        if 'current_session_id' in request.session:
+            session_id = request.session['current_session_id']
+        else:
+            session_id = Session.objects.get(is_open = 'Y').id
         s = Session.objects.get(pk=session_id)
         s.end_ts = datetime.datetime.now()
         s.is_open = 'N'
@@ -98,7 +101,10 @@ def apiSession(request):
 @csrf_exempt
 def apiSet(request):
     if (request.method == 'POST'):
-        session_id = request.session['current_session_id']
+        if 'current_session_id' in request.session:
+            session_id = request.session['current_session_id']
+        else:
+            session_id = Session.objects.get(is_open = 'Y').id
         session = Session.objects.get(id=session_id)
         session.end_ts = datetime.datetime.now()
 
@@ -184,9 +190,9 @@ def profilePage(request):
     for t in times:
         timeTotal += t
 
-    (d,m,s) = timeTotal.days, timeTotal.seconds//3600, (timeTotal.seconds//60)%60
+    (d,h,m) = timeTotal.days, timeTotal.seconds//3600, (timeTotal.seconds//60)%60
 
-    context = {'indiv': i, 'numSessions':numSessions, 'timeTotal':[d,m,s] }
+    context = {'indiv': i, 'numSessions':numSessions, 'timeTotal':[d,h,m] }
     
     template = loader.get_template('workouts/profilePage.html')
     return HttpResponse(template.render(context, request))
