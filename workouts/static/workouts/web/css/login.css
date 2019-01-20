@@ -47,3 +47,25 @@ color: white;
 
 }
 
+h1 {
+  /* Extra small devices (phones, less than 768px) */
+  font-size: 50px !important;
+
+  /* Small devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    font-size: 12px !important;
+  }
+
+  /* Medium devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    font-size: 16px !important;
+  }
+
+  /* Large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    font-size: 18px !important;
+  }
+}
+
+
+
