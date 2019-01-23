@@ -10,10 +10,17 @@
 	background-color: white !important;
 }
 
-form {
+#mainform {
     
-    border: 1px solid #33C1FF;
+    border: 3px solid #33C1FF;
+	text-align:center;
+	padding: 10px;
+	 background-color: grey;
+	 color: white;
+
 }
+
+
 
 #signOutButton  {
 	border-color: #33C1FF;
@@ -23,12 +30,36 @@ form {
 
 #signOutButton:hover {
     color: #33C1FF;
-    background-color: #337AB7 !important;
-    border-color: #2E6DA4 !important;
+    background-color: #33C1FF !important;
+    border-color: #33C1FF !important;
 }
 
 #signOutButton:focus {
     color: #33C1FF;
-    border-color: #2E6DA4 !important;
+    border-color: #33C1FF !important;
     box-shadow: none;
 }
+
+
+.formButton {
+	 width: 50%;
+	text-align: center;
+	
+}
+
+body {
+	background-color: lightgrey	;
+}
+
+.main {
+
+	background-color: #33C1FF !important;
+	margin-bottom: 0px;
+}
+
+jumbotron {
+	background-color: lightblue	;
+}
+
+
+
