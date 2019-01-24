@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static "workouts/web/css/addExercise.css" %}">
+	<link rel="stylesheet" href="{% static "workouts/web/css/global.css" %}">
+
 <script src="{% static "workouts/web/js/addExercise.js" %}"></script>
 
     <title>Rep Tracker</title>
@@ -17,11 +19,10 @@
 {% include "workouts/navbar.html" %}	    <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
-<div class="jumbotron">
+
  <container>
  <div class="col-md-4 col-md-offset-4">
 <br>
- <hr>
 <form id='mainForm'>
       <div class="form-group">
     <label for="weight"></label>
@@ -40,13 +41,13 @@
 </select>
   </div>
 
-  <button type="button" id="addExButton" class="btn btn-primary formButton" onclick="addExercise()">Add Exercise</button>
+  <button type="button" id="addExButton" class="btn btn-primary mainButton" onclick="addExercise()">Add Exercise</button>
   <br><br>
-<a href="/workouts/home"> <button type="button" class="btn btn-primary mb-2 formButton" id="homeButton">Home</button></a>
+<a href="/workouts/home"> <button type="button" class="btn btn-primary mb-2 mainButton" id="homeButton">Home</button></a>
 </form>
  </div>
  </container>
-</div>
+
        
  <hr>
       <!-- /container -->

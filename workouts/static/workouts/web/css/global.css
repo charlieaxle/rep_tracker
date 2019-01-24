@@ -1,0 +1,57 @@
+
+.mainButton {
+	border: 2px darkblue solid !important;
+	color: darkblue !important;
+	background-color: #F5F5DC !important;
+	width: 50%;
+
+}
+
+
+#greetings {
+	color: darkblue;
+
+}
+
+#signOutButton, #signInButton  {
+	border-color: white;
+	color: white;
+}
+
+
+#signOutButton:hover, #signInButton:hover {
+    color: white;
+    background-color: darkblue!important;
+    border-color: white !important;
+}
+
+#signOutButton:focus, #signInButton:focus {
+    color: white;
+    border-color: darkblue !important;
+    box-shadow: none;
+}
+
+
+
+.mainButton {
+	border-color: darkblue !important;
+	color: darkblue!important;
+	background-color: 	#F5F5DC !important;
+	width: 50%;
+
+}
+
+.jumbotron {
+
+padding-top: 60px !important!;
+background-color: 	#F5F5DC !important;
+
+}
+
+body {
+  padding-top: 60px;
+ background-color: 	#F5F5DC !important;
+
+}
+
+}

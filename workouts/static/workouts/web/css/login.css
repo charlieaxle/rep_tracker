@@ -1,43 +1,12 @@
-#signInButton {
-	border-color: #33C1FF;
-	color: #33C1FF;
-	
-	
-	
-}
-
-
-#signInButton:hover {
-    color: #33C1FF;
-    background-color: #337AB7 !important;
-    border-color: #2E6DA4 !important;
-}
-
-#signInButton:focus {
-    color: #33C1FF;
-    border-color: #2E6DA4 !important;
-    box-shadow: none;
-}
-
 .jumbotron {
 	height: 70vh;
 	background-repeat: no-repeat;
  	 background-size:cover;
-
-	
-	
-}
-
-#createButton {
-	border-color: #33C1FF;
-	color: #33C1FF;
-	background-color: white !important;
-	
 }
 
 h1 {
 
-color: white;
+color: darkblue;
 
 }
 
@@ -46,6 +15,23 @@ color: white;
 	color: white;
 
 }
+
+#signInButton {
+	border-color: white;
+	color: white;	
+}
+
+form {
+	margin-left: 10px;
+	text-align: center;
+}
+
+#signInButton:hover {
+    color: white;
+    background-color: darkblue !important;
+    border-color: white !important;
+}
+
 
 h1 {
   /* Extra small devices (phones, less than 768px) */

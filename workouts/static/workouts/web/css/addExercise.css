@@ -1,64 +1,26 @@
-#addExButton {
-	border-color: #33C1FF;
-	color: #33C1FF;	
-	background-color: white !important;
-}
-
-#homeButton {
-	border-color: #33C1FF;
-	color: #33C1FF;
-	background-color: white !important;
-}
 
 #mainform {
     
     border: 3px solid #33C1FF;
 	text-align:center;
 	padding: 10px;
-	 background-color: grey;
-	 color: white;
+	 background-color: #F5F5DC;
+	 color: black;
 
 }
 
 
 
-#signOutButton  {
-	border-color: #33C1FF;
-	color: #33C1FF;
 
-}
-
-#signOutButton:hover {
-    color: #33C1FF;
-    background-color: #33C1FF !important;
-    border-color: #33C1FF !important;
-}
-
-#signOutButton:focus {
-    color: #33C1FF;
-    border-color: #33C1FF !important;
-    box-shadow: none;
-}
-
-
-.formButton {
-	 width: 50%;
-	text-align: center;
-	
-}
-
-body {
-	background-color: lightgrey	;
-}
 
 .main {
 
-	background-color: #33C1FF !important;
+	background-color: #F5F5DC !important;
 	margin-bottom: 0px;
 }
 
 jumbotron {
-	background-color: lightblue	;
+	background-color: #F5F5DC	;
 }
 
 

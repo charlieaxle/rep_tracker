@@ -1,44 +1,15 @@
-#homeButton {
-	border-color: #33C1FF;
-	color: #33C1FF;
-	background-color: white !important;
-}
 
-
-
-#signOutButton  {
-	border-color: #33C1FF;
-	color: white;
+#greetings {
+	color: darkblue;
 
 }
 
-#signOutButton  {
-	border-color: #33C1FF;
-	color: white;
 
-}
 
-#signOutButton:hover {
-    color: white;
-    background-color: #337AB7 !important;
-    border-color: #2E6DA4 !important;
-}
-
-#signOutButton:focus {
-    color: white;
-    border-color: #2E6DA4 !important;
-    box-shadow: none;
-}
-
-.mainButton {
-	border-color: #33C1FF !important;
-	color: #33C1FF !important;
-	background-color: white !important;
-
-}
 
 .jumbotron {
-padding-top: 60px !important!
+padding-top: 60px !important!;
+background-color: 	#F5F5DC !important;
 
 }
 body {
@@ -53,4 +24,4 @@ padding-top: 60px !important!
 
 }
 
-}
+
