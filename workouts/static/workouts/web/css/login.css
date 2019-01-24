@@ -12,7 +12,7 @@ color: darkblue;
 
 #validationMessage {
 
-	color: white;
+	color: black;
 
 }
 
@@ -52,6 +52,4 @@ h1 {
     font-size: 18px !important;
   }
 }
-
-
 
