@@ -11,10 +11,7 @@
 <link rel="stylesheet" href="{% static "workouts/web/css/home.css" %}">	
 
 <!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="{% static "workouts/web/js/homepage.js" %}"></script>
 </head>
@@ -26,22 +23,21 @@
   <div class="row">
     <div class="col mainAction">
 	    {% if individual.has_open_session %}
-		<h2>Resume Workout</h2>
-			<p>Open current workout to continue or end.</p>
-            <p><a href="/workouts/session"><button class="btn btn-secondary mainButton" role="button" id="resumeSessionButton">Resume &raquo;</button></a></p>
+		<h2>Resume Workout 🏋️</h2>
+            <p><a href="/workouts/session"><button class="btn btn-primary mainButton" role="button" id="resumeSessionButton">Resume &raquo;</button></a></p>
         
         
 		{% else %}
 		
-            <h2>Workout</h2>
-            <p><button class="btn btn-secondary mainButton" onclick="CreateSession()" href="" role="button" id="startSessionButton">Begin &raquo;</button></p>
+            <h2>Workout 🏋️</h2>
+            <p><button class="btn btn-primary mainButton" onclick="CreateSession()" href="" role="button" id="startSessionButton">Begin &raquo;</button></p>
           
 
 	{% endif %}
 	</div>
 	
     <div class="col mainAction">
-	            <h2>Exercises</h2>
+	            <h2>Exercises ⚙️</h2>
 	    <p><a href="/workouts/userExercises"><button class="btn btn-secondary mainButton" role="button">View Exercises &raquo;</button><a></p>
             
             <p><a  href="/workouts/add_exercise"><button class="btn btn-secondary mainButton" role="button">Add Exercise &raquo;</button><a></p>
@@ -50,7 +46,7 @@
 <br>
   <div class="row">
     <div class="col mainAction">
-            <h2>Results</h2>
+            <h2>Results 📈</h2>
              <p><a href="/workouts/history"><button class="btn btn-secondary mainButton" href="/workouts/history" role="button">Review &raquo;</button></a></p>
           </div>
 	<div class="col">

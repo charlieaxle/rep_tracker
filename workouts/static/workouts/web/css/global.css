@@ -7,6 +7,10 @@
 
 }
 
+.mainButton:focus {
+    box-shadow: 0 0 0 0.2rem grey !important;
+}
+
 
 #greetings {
 	color: darkblue;
@@ -33,24 +37,17 @@
 
 
 
-.mainButton {
-	border-color: darkblue !important;
-	color: darkblue!important;
-	background-color: 	#F5F5DC !important;
-	width: 50%;
-
-}
 
 .jumbotron {
 
 padding-top: 60px !important!;
-background-color: 	#F5F5DC !important;
+background-color: 	white !important;
 
 }
 
 body {
   padding-top: 60px;
- background-color: 	#F5F5DC !important;
+ background-color: 	white !important;
 
 }
 

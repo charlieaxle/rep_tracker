@@ -13,7 +13,6 @@
 <!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -24,22 +23,20 @@
   </head>
   <body>
 {% include "workouts/navbar.html" %}
-	    <main role="main">
-
+	
       <!-- Main jumbotron for a primary marketing message or call to action -->
-         <div class="container">
+ <div class="container-fluid" style="text-align:center;">
 <br>
           <h1 class="display-3">Get Started</h1>
 <br>
-		  <div class="row">
-	<form class="form-inline">
-  <div class="form-group mx-sm-3 mb-2">
-    <label for="inputUserName" class="sr-only">Enter New User Name</label>
- 
-    <input type="text" class="form-control" id="userNameInput" placeholder="Create New User Name">
-  </div>
-  <button type="button" class="mainButton btn btn-primary mb-2" id="createButton" onClick="createUser()">Create Account</button>
-</form>
+<div class="row" style="text-align:center;">
+    <input type="text" class="form-control" id="userNameInput" placeholder="Create New User Name" style="margin: 0 auto;">
+ </div>
+<br>
+<div class="row" style="text-align:center;">
+  <button type="button" class="mainButton btn btn-primary mb-2" id="createButton" onClick="createUser()" style="margin: 0 auto;">Create Account</button>
+</div>
+</div>
    <div id="validationMessage"></div>
    
       </div>
@@ -48,11 +45,6 @@
 
 
 
-       
- 
-      <!-- /container -->
-
-    </main>
 	
 {% include "workouts/footer.html" %}
 	
