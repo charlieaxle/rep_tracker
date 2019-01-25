@@ -1,6 +1,6 @@
 
 #greetings {
-	color: darkblue;
+	color: black;
 
 }
 
@@ -25,3 +25,7 @@ padding-top: 60px !important!
 }
 
 
+#buttonDiv {
+	text-align: center;
+
+}

@@ -6,7 +6,7 @@
 
 h1 {
 
-color: darkblue;
+color: black;
 
 }
 
@@ -32,6 +32,13 @@ form {
     border-color: white !important;
 }
 
+.form-group{
+
+	margin-left: 0px;
+	
+
+}
+
 
 h1 {
   /* Extra small devices (phones, less than 768px) */
@@ -53,3 +60,26 @@ h1 {
   }
 }
 
+
+#userNameInput {
+	width: 80%;
+
+}
+
+#userNameInputDiv {
+	margin: 0 auto;
+	width: 100%;
+	padding: 0px;
+}
+
+#createButtonDiv {
+
+	margin-left: 0px;
+	margin-top: 10px;
+
+}
+
+.mainAction {
+	margin: 0 auto;
+
+}

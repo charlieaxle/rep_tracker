@@ -1,14 +1,13 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Latest compiled and minified CSS -->
-	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="{% static "workouts/web/css/global.css" %}">	
+<head>
+  <title>Rep Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+ 
+ <link rel="stylesheet" href="{% static "workouts/web/css/global.css" %}">	
 <link rel="stylesheet" href="{% static "workouts/web/css/home.css" %}">	
 
 <!-- jQuery library -->
@@ -18,61 +17,58 @@
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="{% static "workouts/web/js/homepage.js" %}"></script>
-    <title>Rep Tracker</title>
-  </head>
-  <body>
+</head>
+<body>
 {% include "workouts/navbar.html" %}
-	    <main role="main">
 
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-    
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-		
-            {% if individual.has_open_session %}
+<div class="container-fluid">
+<br>
+  <div class="row">
+    <div class="col mainAction">
+	    {% if individual.has_open_session %}
 		<h2>Resume Workout</h2>
 			<p>Open current workout to continue or end.</p>
             <p><a href="/workouts/session"><button class="btn btn-secondary mainButton" role="button" id="resumeSessionButton">Resume &raquo;</button></a></p>
-          </div>
+        
         
 		{% else %}
 		
             <h2>Workout</h2>
             <p><button class="btn btn-secondary mainButton" onclick="CreateSession()" href="" role="button" id="startSessionButton">Begin &raquo;</button></p>
-          </div>
+          
 
-	{% endif %}		
-
-          <div class="col-md-4">
-            <h2>Exercises</h2>
+	{% endif %}
+	</div>
+	
+    <div class="col mainAction">
+	            <h2>Exercises</h2>
 	    <p><a href="/workouts/userExercises"><button class="btn btn-secondary mainButton" role="button">View Exercises &raquo;</button><a></p>
             
             <p><a  href="/workouts/add_exercise"><button class="btn btn-secondary mainButton" role="button">Add Exercise &raquo;</button><a></p>
-	<div id='allExercises'>
-		<ul id='exList'>
-		
-		</ul>
 	</div>
-          </div>
-          <div class="col-md-4">
+  </div>
+<br>
+  <div class="row">
+    <div class="col mainAction">
             <h2>Results</h2>
              <p><a href="/workouts/history"><button class="btn btn-secondary mainButton" href="/workouts/history" role="button">Review &raquo;</button></a></p>
           </div>
-        </div>
+	<div class="col">
+	</div>
 
-      <!-- /container -->
-
-    </main>
-	
+  </div>
+</div>
+    
 {% include "workouts/footer.html" %}
 
-	
+</body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
+</html>
+
+	
 </html>
