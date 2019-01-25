@@ -86,11 +86,12 @@ def apiSession(request):
         return HttpResponse(json.dumps(data), content_type="application/json")
 
     elif (request.method == 'PUT'):
+        individual_id = request.session['current_user_id']
         put = QueryDict(request.body)
         if 'current_session_id' in request.session:
             session_id = request.session['current_session_id']
         else:
-            session_id = Session.objects.get(is_open = 'Y').id
+            session_id = Session.objects.get(individual_id = individual_id, is_open = 'Y').id
         s = Session.objects.get(pk=session_id)
         s.end_ts = datetime.datetime.now()
         s.is_open = 'N'
