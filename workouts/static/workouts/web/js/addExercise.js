@@ -23,6 +23,9 @@ function addExercise() {
         console.log('exercise api post complete');
 	    document.getElementById("exerciseName").value = '';
 	    document.getElementById("exercise_type_id").value = '0';
+             url = "/workouts/userExercises"
+	    window.location.href = url;
+
 	}
 
     });

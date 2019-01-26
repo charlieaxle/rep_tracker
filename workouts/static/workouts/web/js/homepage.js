@@ -44,6 +44,12 @@ function CreateSession() {
 	error: function(xhr, status, error) {
 		element = document.getElementById("validationMessage");
 		element.innerHTML = "<p>"+xhr.responseText+"</p>";
+		if (xhr.responseText == "Add exercises first!") {
+			addExButton = document.getElementById("exButton");
+			addExButton.className += " greenBorder";
+
+		}
+
 		},
 
 	complete: function(data) {
