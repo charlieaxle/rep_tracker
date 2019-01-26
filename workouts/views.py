@@ -73,10 +73,14 @@ def session(request):
 @csrf_exempt
 def apiSession(request):
     if (request.method == 'POST'):
+        user_id=request.session['current_user_id']
+        if not Exercise.objects.filter(indiv_create_id=user_id).exists():
+            return HttpResponseBadRequest('Add exercises first!') 
+
         s = Session()
         s.start_ts = datetime.datetime.now()
         s.end_ts = datetime.datetime.now()
-        s.individual_id = request.session['current_user_id']
+        s.individual_id = user_id
         s.gym_id = request.POST.get("gym_id","")
         s.is_open = 'Y'
         s.save()

@@ -40,6 +40,12 @@ function CreateSession() {
             gym_id: 1
 	},
 	dataType: 'json',
+
+	error: function(xhr, status, error) {
+		element = document.getElementById("validationMessage");
+		element.innerHTML = "<p>"+xhr.responseText+"</p>";
+		},
+
 	complete: function(data) {
             json = JSON.parse(data.responseJSON);
 	    console.log(json[0]);

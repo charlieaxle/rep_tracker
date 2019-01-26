@@ -57,3 +57,9 @@ body {
 	text-align: center !important;
 
 }
+
+
+.navbar-toggler:focus {
+       outline: 5px auto white;
+
+}
