@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, QueryDict, HttpResponseBadRequest
-from workouts.models import Exercise, Session, Set, Gym, Individual, ExerciseType, SummaryIndividual
+from workouts.models import Exercise, Session, Set, Gym, Individual, ExerciseType, SummaryIndividual, Program, PlannedSets
 from django.template import loader
 import datetime
 from django.views.decorators.csrf import csrf_exempt
@@ -27,6 +27,14 @@ def exerciseList(request):
     template = loader.get_template('workouts/exercises.html')
     context  = {'exercise_list': e}
     return HttpResponse(template.render(context, request))
+
+def programList(request):
+    user_id = request.session['current_user_id']
+    p = Program.objects.filter(individual_id=user_id).order_by('-rec_ins_ts')
+    template = loader.get_template('workouts/programs.html')
+    context  = {'program_list': p}
+    return HttpResponse(template.render(context, request))
+
 
 @csrf_exempt
 def apiExercise(request):
@@ -56,8 +64,11 @@ def apiExercise(request):
         data = serializers.serialize('json', [e,])
         return HttpResponse(json.dumps(data), content_type="application/json")
 
-    else: 
-        user_id=request.session['current_user_id']
+    else:
+        if 'user_id' in request.GET:
+            user_id = request.GET.get('user_id')
+        else:
+            user_id=request.session['current_user_id']
         exercises = Exercise.objects.filter(indiv_create_id=user_id, active_ind='Y').order_by('-rec_ins_ts')
         data = serializers.serialize('json', exercises)
         return HttpResponse(json.dumps(data), content_type="application/json")
@@ -201,4 +212,41 @@ def profilePage(request):
     
     template = loader.get_template('workouts/profilePage.html')
     return HttpResponse(template.render(context, request))
- 
+
+
+
+@csrf_exempt
+def planView(request):
+    template = loader.get_template('workouts/createPlan.html')
+    return HttpResponse(template.render({}, request))
+
+@csrf_exempt
+def apiProgram(request):
+    if (request.method == 'POST'):
+        program_nm = request.POST.get("program_nm","")
+        print(program_nm)
+        p = Program()
+        p.program_nm = program_nm
+        p.individual_id = request.session['current_user_id']
+        p.rec_ins_ts = datetime.datetime.now()
+        p.save()
+        data =  serializers.serialize('json', [p,])
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
+@csrf_exempt
+def apiPlannedSets(request):
+    if (request.method == 'POST'):
+        program_id = request.POST.get("program_id","")
+        exercise_id = request.POST.get("ex_id","")
+        num_sets = request.POST.get("num_sets","")
+        prog_order_nbr = request.POST.get("prog_order_nbr","")
+        ps = PlannedSets()
+        ps.program_id = program_id
+        ps.exercise_id = exercise_id
+        ps.num_sets = num_sets
+        ps.prog_order_nbr = prog_order_nbr
+        ps.save()
+        data =  serializers.serialize('json', [ps,])
+        return HttpResponse(json.dumps(data), content_type="application/json")
+
+

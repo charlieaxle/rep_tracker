@@ -60,3 +60,14 @@ class Set(models.Model):
     reps = models.IntegerField(default=0)
     weight = models.IntegerField(default=0)
 
+class Program(models.Model):
+    program_nm = models.CharField(max_length=200);
+    individual = models.ForeignKey(Individual, on_delete=models.CASCADE)
+    rec_ins_ts =  models.DateTimeField()
+
+class PlannedSets(models.Model):
+    program = models.ForeignKey(Program, on_delete= models.CASCADE)
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+    num_sets = models.IntegerField(default=1)
+    prog_order_nbr = models.IntegerField(default=0)
+    

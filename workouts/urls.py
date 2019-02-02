@@ -17,4 +17,8 @@ urlpatterns =[
     path('add_exercise', views.addExercise, name='addExercisePage'),
     path('api/exercise', views.apiExercise, name='apiExercise'),
     path('profile', views.profilePage, name='profilePage'),
+    path('planView', views.planView, name ='planView'),
+    path('api/program', views.apiProgram, name='apiProgram'),
+    path('api/plannedSets', views.apiPlannedSets, name='apiPlannedSets'),
+    path('userPrograms', views.programList, name='programList'),
 ]

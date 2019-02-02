@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   	<link rel="stylesheet" href="{% static "workouts/web/css/global.css" %}">	
+<link rel="stylesheet" href="{% static "workouts/web/css/session_summary.css" %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="{% static "workouts/web/js/createPlan.js" %}"></script>
+
+    <title>Rep Tracker</title>
+  </head>
+  <body>
+{% include "workouts/navbar.html" %}
+	    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+ <container>
+ <div class="col-md-4 col-md-offset-4">
+ <br>
+  <div class="mainAction">    
+  <h3>Workout Name</h3>
+   <input type="text" class="form-control" id="programName" placeholder="Name Your Workout" style="margin: 0 auto;">  
+</div>
+
+
+
+<table class="table" id="programTable">
+  <thead>
+    <tr>
+      <th scope="col">Exercise</th>
+      <th scope="col">Sets</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sets">
+
+
+	
+  </tbody>
+</table>
+<button id="addButton">Add</button>
+<div class="mainAction">
+<a href="#"> <button type="button" class="mainButton btn btn-primary mb-2" id="saveProgram" onclick="saveProgram()">Save Workout</button></a>
+</div>
+
+<div class="mainAction">
+
+<a href="/workouts/home"> <button type="button" class="mainButton btn btn-primary mb-2" id="homeButton">Cancel</button></a>
+</div>
+ </div>
+ </container>
+
+      <!-- /container -->
+
+    </main>
+	
+{% include "workouts/footer.html" %}
+
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
