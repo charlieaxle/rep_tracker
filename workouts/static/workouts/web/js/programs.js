@@ -13,8 +13,8 @@ $(document).ready(function() {
 			
 			var row = this.closest('tr');
 			var program_id = row.id;
-			
-			this.onclick = function() {startProgram(program_id)};  
+			startProgram(program_id);
+		
 			
 		}
 
