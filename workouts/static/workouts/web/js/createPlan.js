@@ -69,6 +69,9 @@ function saveProgram() {
 			prog_order_nbr = j;
 			addPlannedSet(ex_id, numSets, program_id, prog_order_nbr);
 		}
+		url = "/workouts/userPrograms"
+	    window.location.href = url;
+
 						
 	}
 

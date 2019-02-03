@@ -13,7 +13,7 @@
 	<!-- Latest compiled JavaScript -->
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="{% static "workouts/web/js/programs.js" %}"></script>
+	//<script src="{% static "workouts/web/js/createWorkout.js" %}"></script>
 
     <title>Rep Tracker</title>
   </head>
@@ -25,31 +25,41 @@
  <container>
  <div class="col-md-4 col-md-offset-4">
  <br>
-  <div class="mainAction">       
-  <p><a  href="/workouts/newProgram"><button class="btn btn-secondary mainButton" role="button">Add Program &raquo;</button><a></p>
-</div>
 
-<table class="table" id="summaryTable">
+
+
+<table class="table" id="workoutTable">
   <thead>
     <tr>
-      <th scope="col">Program Name</th>
+      <th scope="col">Exercise</th>
+      <th scope="col">Reps</th>
+        <th scope="col">Weight</th>
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="workoutSets">
 
+{% for ws in plannedSets %}
 
-{% for p in program_list %}
-
-<tr id= {{ p.id }}>
-	<td class="programName">{{ p.program_nm }}</td>
-	<td><button class="startButton">Start</button></td>
-</tr>
+		<tr id= {{ ws.exercise_id }}>
+		<td class="exName">{{ ws.exercise_nm }}</td>
+	 	<td><input type="text" class="form-control" id="weight" placeholder="Enter weight"></td>
+	 	<td><input type="text" class="form-control" id="reps" placeholder="Enter Reps"></td>
+		</tr>
 {% endfor %}
+
+
+	
   </tbody>
 </table>
+<button id="addButton">Add</button>
 <div class="mainAction">
-<a href="/workouts/home"> <button type="button" class="mainButton btn btn-primary mb-2" id="homeButton">Home</button></a>
+<a href="#"> <button type="button" class="mainButton btn btn-primary mb-2" id="saveProgram" onclick="saveProgram()">Save Workout</button></a>
+</div>
+
+<div class="mainAction">
+
+<a href="/workouts/home"> <button type="button" class="mainButton btn btn-primary mb-2" id="homeButton">Cancel</button></a>
 </div>
  </div>
  </container>

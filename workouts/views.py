@@ -222,12 +222,17 @@ def planView(request):
 
 @csrf_exempt
 def apiProgram(request):
+    user_id = request.session['current_user_id']
     if (request.method == 'POST'):
         program_nm = request.POST.get("program_nm","")
+        if program_nm == "":
+            return HttpResponseBadRequest('Program Name is Empty')
+        if Program.objects.filter(program_nm = program_nm, individual_id =user_id ).exists():
+            return HttpResponseBadRequest('Program Name is Duplicate')
         print(program_nm)
         p = Program()
         p.program_nm = program_nm
-        p.individual_id = request.session['current_user_id']
+        p.individual_id = user_id
         p.rec_ins_ts = datetime.datetime.now()
         p.save()
         data =  serializers.serialize('json', [p,])
@@ -249,4 +254,25 @@ def apiPlannedSets(request):
         data =  serializers.serialize('json', [ps,])
         return HttpResponse(json.dumps(data), content_type="application/json")
 
+
+@csrf_exempt
+def startProgram(request):
+    if 'program_id' in request.GET:
+        program_id = request.GET.get("program_id","")
+        print('here:',request.GET.get("program_id",""))
+        p = Program.objects.get(id=program_id)
+        ps = p.plannedsets_set.order_by('id').distinct()
+        plannedSets = []
+        for plannedSet in ps:
+            for i in range(plannedSet.num_sets):
+                tmp = {}
+                tmp["exercise_nm"] = plannedSet.exercise.exercise_nm	
+                tmp["exercise_id"] = plannedSet.exercise_id
+                plannedSets.append(tmp)
+            
+        context = {'plannedSets':plannedSets}
+        template = loader.get_template('workouts/createWorkout.html')
+        return HttpResponse(template.render(context, request))
+
+    
 
