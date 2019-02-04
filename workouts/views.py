@@ -258,6 +258,7 @@ def apiPlannedSets(request):
 @csrf_exempt
 def startProgram(request):
     if 'program_id' in request.GET:
+        user_id = request.session["current_user_id"]
         program_id = request.GET.get("program_id","")
         print('here:',request.GET.get("program_id",""))
         p = Program.objects.get(id=program_id)
@@ -269,8 +270,8 @@ def startProgram(request):
                 tmp["exercise_nm"] = plannedSet.exercise.exercise_nm	
                 tmp["exercise_id"] = plannedSet.exercise_id
                 plannedSets.append(tmp)
-            
-        context = {'plannedSets':plannedSets}
+        exercises = Exercise.objects.filter(indiv_create_id=user_id, active_ind='Y').order_by('-rec_ins_ts')   
+        context = {'plannedSets':plannedSets, 'exercises':exercises}
         template = loader.get_template('workouts/createWorkout.html')
         return HttpResponse(template.render(context, request))
 

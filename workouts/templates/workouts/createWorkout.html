@@ -13,7 +13,7 @@
 	<!-- Latest compiled JavaScript -->
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	//<script src="{% static "workouts/web/js/createWorkout.js" %}"></script>
+	<script src="{% static "workouts/web/js/workoutV2.js" %}"></script>
 
     <title>Rep Tracker</title>
   </head>
@@ -42,11 +42,21 @@
 {% for ws in plannedSets %}
 
 		<tr id= {{ ws.exercise_id }}>
-		<td class="exName">{{ ws.exercise_nm }}</td>
+		<td class="exercise">
+		  <select name="exercise" id="exercise_id">
+		<option value="">--Select--</option>
+		{% for e in exercises %}
+		<option value={{ e.id }} {% if e.id == ws.exercise_id %} selected {% endif %} >{{ e.exercise_nm }}</option>
+		{% endfor %} 
+		</select>
+
+		</td>
 	 	<td><input type="text" class="form-control" id="weight" placeholder="Enter weight"></td>
 	 	<td><input type="text" class="form-control" id="reps" placeholder="Enter Reps"></td>
+		<td><button class="deleteSet">Delete</button></td>		
 		</tr>
 {% endfor %}
+
 
 
 	
@@ -54,12 +64,12 @@
 </table>
 <button id="addButton">Add</button>
 <div class="mainAction">
-<a href="#"> <button type="button" class="mainButton btn btn-primary mb-2" id="saveProgram" onclick="saveProgram()">Save Workout</button></a>
+<a href="#"> <button type="button" class="mainButton btn btn-primary mb-2" id="saveWorkout" onclick="saveWorkout()">Save Workout</button></a>
 </div>
 
 <div class="mainAction">
 
-<a href="/workouts/home"> <button type="button" class="mainButton btn btn-primary mb-2" id="homeButton">Cancel</button></a>
+<a href="/workouts/home"> <button type="button" class="mainButton btn btn-primary mb-2" id="homeButton">Home</button></a>
 </div>
  </div>
  </container>
