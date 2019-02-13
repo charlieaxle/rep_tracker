@@ -41,9 +41,9 @@
 
 {% for ws in plannedSets %}
 
-		<tr id= {{ ws.exercise_id }}>
+		<tr class="setRow" id= {{ ws.exercise_id }}>
 		<td class="exercise">
-		  <select name="exercise" id="exercise_id">
+		  <select name="exercise" id="exercise_id" class="exSelect">
 		<option value="">--Select--</option>
 		{% for e in exercises %}
 		<option value={{ e.id }} {% if e.id == ws.exercise_id %} selected {% endif %} >{{ e.exercise_nm }}</option>
@@ -51,8 +51,8 @@
 		</select>
 
 		</td>
-	 	<td><input type="text" class="form-control" id="weight" placeholder="Enter weight"></td>
-	 	<td><input type="text" class="form-control" id="reps" placeholder="Enter Reps"></td>
+	 	<td><input type="text" class="form-control reps" id="reps" placeholder="Enter Reps"></td>
+	 	<td><input type="text" class="form-control weight" id="weight" placeholder="Enter Weight"></td>
 		<td><button class="deleteSet">Delete</button></td>		
 		</tr>
 {% endfor %}

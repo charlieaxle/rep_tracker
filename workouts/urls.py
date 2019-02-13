@@ -22,4 +22,5 @@ urlpatterns =[
     path('api/plannedSets', views.apiPlannedSets, name='apiPlannedSets'),
     path('userPrograms', views.programList, name='programList'),
     path('startProgram', views.startProgram, name='startProgram'),
+    path('workoutTransition', views.workoutTransition, name='workoutTransition'),
 ]

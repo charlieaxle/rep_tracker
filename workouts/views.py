@@ -274,6 +274,17 @@ def startProgram(request):
         context = {'plannedSets':plannedSets, 'exercises':exercises}
         template = loader.get_template('workouts/createWorkout.html')
         return HttpResponse(template.render(context, request))
+    else:
+        user_id = request.session["current_user_id"]
+        exercises = Exercise.objects.filter(indiv_create_id=user_id, active_ind='Y').order_by('-rec_ins_ts') 
+        context = {'plannedSets':{}, 'exercises':exercises}
+        template = loader.get_template('workouts/createWorkout.html')
+        return HttpResponse(template.render(context, request))
 
-    
+
+@csrf_exempt
+def workoutTransition(request):
+    template = loader.get_template('workouts/startWorkoutTransition.html')
+    return HttpResponse(template.render({}, request))
+  
 
