@@ -104,7 +104,7 @@ DATABASES = {
 
 
 #Local for Testing
-if 'test' in sys.argv or '10.0.0.35:8000' in sys.argv or 1==1:
+if 'test' in sys.argv or '10.0.0.35:8000' in sys.argv:
     DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
